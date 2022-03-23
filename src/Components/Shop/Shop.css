@@ -1,0 +1,23 @@
+.shop-container{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+.product-parent{
+    text-align: center;
+    color: aliceblue;
+    background: rgb(145, 125, 125);
+}
+.product-container{
+    text-align: center;
+    color: black;
+    background: rgb(145, 125, 125);
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 10px;
+    padding: 20px;
+}
+.cart-container{
+    
+    text-align: center;
+    background: orange;
+}

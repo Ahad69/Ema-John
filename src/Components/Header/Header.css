@@ -1,0 +1,14 @@
+.header{
+    background: black;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.navs a{
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+}
