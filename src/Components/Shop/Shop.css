@@ -1,10 +1,12 @@
 .shop-container{
     display: grid;
+    
     grid-template-columns: 4fr 1fr;
 }
 .product-parent{
     text-align: center;
     color: aliceblue;
+    position: relative;
     background: rgb(145, 125, 125);
 }
 .product-container{
@@ -17,7 +19,7 @@
     padding: 20px;
 }
 .cart-container{
-    
+   
     text-align: center;
     background: orange;
 }
