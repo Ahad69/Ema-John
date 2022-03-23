@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb, getStoredCart } from '../../utilities/fakedb';
+import { addToDb, getStoredCart} from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
@@ -39,27 +39,33 @@ const Shop = () => {
         const loadData = getStoredCart();
         const savedStorage = [] ;
         for(const id in loadData){
-            // console.log(id)
-        
             const addedProduct = products.find(product => product.id === id)
             if(addedProduct){
                 const quantity = loadData[id]
                 addedProduct.quantity = quantity;
                 savedStorage.push(addedProduct)
-            }
-            
-           
-            
+            }   
         }
         setCart(savedStorage)
     },[products])
 
 
+      const handleRemove = id =>{
+          console.log(id)
+        const storedCart = localStorage.getItem('shopping-cart');
+        if(storedCart){
+            const shoppingCart = JSON.parse(storedCart);
+            if(id in shoppingCart){
+                delete shoppingCart[id];
+                localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+            }
+        }
 
-    const handleRemove = (id) => {
+        
         const newPeople = cart.filter((person) => person.id !== id);
         setCart(newPeople);
-      };
+    }
+
 
     return (
         <div className='shop-container'>
@@ -74,7 +80,7 @@ const Shop = () => {
             </div>
 
             <div className="cart-container">
-                <Cart cart={cart} handleRemove={handleRemove}></Cart>
+                <Cart cart={cart} key={cart.id} handleRemove={handleRemove}></Cart>
             
             </div>
         </div>

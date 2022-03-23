@@ -1,0 +1,12 @@
+
+/* .single{
+    position: relative;
+} */
+/* .button{
+    position: absolute;
+    top: 0;
+    right: 0;
+} */
+.cart-items{
+    display: flex;
+}
