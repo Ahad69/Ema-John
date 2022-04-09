@@ -1,10 +1,9 @@
 import React from 'react';
-import CartSingle from '../CartSingle/CartSingle';
 import './Cart.css'
 
-const Cart = ({cart , handleRemove}) => {
+const Cart = (props) => {
     
-    // const {img , name , price , id ,} = cart
+    const {cart } = props
 
 let total = 0 ;
 let shipping = 0 ;
@@ -27,11 +26,12 @@ const totalPrice = tax + total + shipping;
 
             <p>Tax : {tax.toFixed(2)}</p>
             <h4>Total Price : {totalPrice.toFixed(2)}</h4>
-        <div className='cart'>
+        {/* <div className='cart'>
             {
                 cart.map(carts => <CartSingle carts={carts} handleRemove={handleRemove}></CartSingle>)
             }
-        </div>
+        </div> */}
+        <button>{props.children}</button>
         </div>
     );
 };

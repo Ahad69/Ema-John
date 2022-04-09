@@ -8,5 +8,19 @@
     right: 0;
 } */
 .cart-items{
+   border-radius: 10px;
+    background: rgba(255, 255, 255, 0.281);
+    margin: 2%;
+    width:70%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart-items img{
+    padding: 5px;
+    border-radius: 10px;
+}
+.button{
+    border-radius: 50%;
+    background: red;
 }

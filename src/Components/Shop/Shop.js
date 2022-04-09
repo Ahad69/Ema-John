@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import useProducts from '../../Hooks/useProducts';
 import { addToDb, getStoredCart} from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
-import './Shop.css'
+import './Shop.css';
 
 const Shop = () => {
-    const [products , setProducts] = useState([])
+    const [products , setProducts ] = useProducts()
 
     const [ cart , setCart] = useState([])
 
-    useEffect(()=>{
-        fetch('products.json')
-        .then(res=>res.json())
-        .then(data=> setProducts(data))
-    },[])
+    // const [ search , setSearch] = useState([])
+    // console.log(search)
 
     const addToCart = (selectedProduct) =>{
         let newCart = []  
@@ -28,7 +27,6 @@ const Shop = () => {
             newCart = [...rest , exist]
 
         }
-       
         setCart(newCart)
         addToDb(selectedProduct.id)
     } 
@@ -50,28 +48,38 @@ const Shop = () => {
     },[products])
 
 
-      const handleRemove = id =>{
-          console.log(id)
-        const storedCart = localStorage.getItem('shopping-cart');
-        if(storedCart){
-            const shoppingCart = JSON.parse(storedCart);
-            if(id in shoppingCart){
-                delete shoppingCart[id];
-                localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
-            }
-        }
+    //   const handleRemove = id =>{
+          
+    //     const storedCart = localStorage.getItem('shopping-cart');
+    //     if(storedCart){
+    //         const shoppingCart = JSON.parse(storedCart);
+    //         if(id in shoppingCart){
+    //             delete shoppingCart[id];
+    //             localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+    //         }
+    //     }
 
         
-        const newPeople = cart.filter((person) => person.id !== id);
-        setCart(newPeople);
+    //     const newPeople = cart.filter((person) => person.id !== id);
+    //     setCart(newPeople);
+       
+    // }
+    const handleChange = (e) =>{
+        console.log(e.target.value)
+        const myText = e.target.value ;
+        const match = products.filter(v => v.name.includes(myText));
+        setProducts(match)
+        
     }
-
 
     return (
         <div className='shop-container'>
-            
+             
             <div className="product-parent">
+           
                  <h1>Total Products : {products.length}</h1>
+                 <input onChange={handleChange} type="text" placeholder='Search a product' />
+                 
                   <div className='product-container'>
                   {
                         products.map(product => <Product product={product} key={product.id} addToCart={addToCart}></Product>)
@@ -80,7 +88,11 @@ const Shop = () => {
             </div>
 
             <div className="cart-container">
-                <Cart cart={cart} key={cart.id} handleRemove={handleRemove}></Cart>
+                <Cart cart={cart} key={cart.id}>
+                    <Link to='/orders'>
+                        <button>Review Order</button>
+                    </Link>
+                </Cart>
             
             </div>
         </div>
