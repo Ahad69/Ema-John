@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 import useProducts from '../../Hooks/useProducts';
 import { addToDb, getStoredCart} from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
@@ -8,7 +10,7 @@ import './Shop.css';
 
 const Shop = () => {
     const [products , setProducts ] = useProducts()
-
+    const [user,error] = useAuthState(auth);
     const [ cart , setCart] = useState([])
 
     // const [ search , setSearch] = useState([])
@@ -76,7 +78,7 @@ const Shop = () => {
         <div className='shop-container'>
              
             <div className="product-parent">
-           
+                <h1 style={{color:'blue'}}>Welcome {user?.email}</h1>
                  <h1>Total Products : {products.length}</h1>
                  <input onChange={handleChange} type="text" placeholder='Search a product' />
                  

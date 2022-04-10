@@ -1,11 +1,11 @@
 .form-container{
     height: 72vh;
     padding-top: 150px;
-    background: rgba(231, 61, 61, 0.171);
+    background: linear-gradient(to left , rgba(61, 177, 231, 0.171) , rgba(235, 164, 164, 0.247));
 }
 .form{
     width: 50%;
-    background: rgba(231, 61, 61, 0.171);
+    background: rgba(61, 177, 231, 0.171);
     margin:auto auto;
     text-align: center;
     padding: 20px;
